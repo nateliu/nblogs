@@ -20,3 +20,11 @@ perform some enhancement for this blogs
 ## step03blogenhance 03
 - use skip&limit to do paginating
 - add archive page.
+
+## this branch step04tagpvsearchlink will perform the tagge, pv statistics, search page and link page.
+- add tagpage
+- add pv for each page
+- add searchpage
+- add link page
+- add 404 page
+- add head(need do more investgate)
