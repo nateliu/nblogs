@@ -23,10 +23,10 @@ app.set('view engine', 'ejs');
 
 app.use(session({
   secret: settings.cookieSecret,
-  key: settings.db,//cookie name
+  key: settings.db || 'nblogscookiename',//cookie name
   cookie: {maxAge: 1000 * 60 * 60 * 24 * 30},//30 days
   store: new MongoStore({
-    url: 'mongodb://localhost/nblogs'
+    url: settings.url
   })
 }));
 app.use(flash());

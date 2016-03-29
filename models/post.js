@@ -1,4 +1,5 @@
-var mongodb = require('./db');
+var mongodb = require('mongodb').MongoClient;
+var settings = require('../settings');
 
 function Post(name, title, post) {
   this.name = name;
@@ -28,21 +29,21 @@ Post.prototype.save = function(callback) {
       post: this.post
   };
   //打开数据库
-  mongodb.open(function (err, db) {
+  mongodb.connect(settings.url,function (err, db) {
     if (err) {
       return callback(err);
     }
     //读取 posts 集合
     db.collection('posts', function (err, collection) {
       if (err) {
-        mongodb.close();
+        db.close();
         return callback(err);
       }
       //将文档插入 posts 集合
       collection.insert(post, {
         safe: true
       }, function (err) {
-        mongodb.close();
+        db.close();
         if (err) {
           return callback(err);//失败！返回 err
         }
@@ -55,14 +56,14 @@ Post.prototype.save = function(callback) {
 //读取文章及其相关信息
 Post.get = function(name, callback) {
   //打开数据库
-  mongodb.open(function (err, db) {
+  mongodb.connect(settings.url,function (err, db) {
     if (err) {
       return callback(err);
     }
     //读取 posts 集合
     db.collection('posts', function(err, collection) {
       if (err) {
-        mongodb.close();
+        db.close();
         return callback(err);
       }
       var query = {};
@@ -73,7 +74,7 @@ Post.get = function(name, callback) {
       collection.find(query).sort({
         time: -1
       }).toArray(function (err, docs) {
-        mongodb.close();
+        db.close();
         if (err) {
           return callback(err);//失败！返回 err
         }
