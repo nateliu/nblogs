@@ -14,3 +14,8 @@ perform some enhancement for this blogs
 
 ## step03blogenhance 02
 ### perform userpage and postpage.
+### can do edit and delete post
+### can comment in post.
+
+## step03blogenhance 03
+### use skip&limit to do paginating
