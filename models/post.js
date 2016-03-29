@@ -1,5 +1,6 @@
-var mongodb = require('mongodb').MongoClient;
+var client = require('mongodb').MongoClient;
 var settings = require('../settings');
+var markdown = require('markdown').markdown;
 
 function Post(name, title, post) {
   this.name = name;
@@ -29,7 +30,7 @@ Post.prototype.save = function(callback) {
       post: this.post
   };
   //打开数据库
-  mongodb.connect(settings.url,function (err, db) {
+  client.connect(settings.url,function (err, db) {
     if (err) {
       return callback(err);
     }
@@ -56,7 +57,7 @@ Post.prototype.save = function(callback) {
 //读取文章及其相关信息
 Post.get = function(name, callback) {
   //打开数据库
-  mongodb.connect(settings.url,function (err, db) {
+  client.connect(settings.url,function (err, db) {
     if (err) {
       return callback(err);
     }
@@ -78,6 +79,12 @@ Post.get = function(name, callback) {
         if (err) {
           return callback(err);//失败！返回 err
         }
+        
+        //解析 markdown 为 html
+        docs.forEach(function (doc) {
+          doc.post = markdown.toHTML(doc.post);
+        });
+
         callback(null, docs);//成功！以数组形式返回查询的结果
       });
     });

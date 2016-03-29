@@ -1,4 +1,4 @@
-var mongodb = require('mongodb').MongoClient;
+var client = require('mongodb').MongoClient;
 var settings = require('../settings');
 
 function User(user) {
@@ -18,7 +18,7 @@ User.prototype.save = function(callback) {
       email: this.email
   };
   //打开数据库
-  mongodb.connect(settings.url, function (err, db) {
+  client.connect(settings.url, function (err, db) {
     if (err) {
       return callback(err);//错误，返回 err 信息
     }
@@ -45,7 +45,7 @@ User.prototype.save = function(callback) {
 //读取用户信息
 User.get = function(name, callback) {
   //打开数据库
-  mongodb.connect(settings.url,function (err, db) {
+  client.connect(settings.url,function (err, db) {
     if (err) {
       return callback(err);//错误，返回 err 信息
     }
