@@ -32,3 +32,8 @@ perform some enhancement for this blogs
 ## this branch step05forward perform the forward feature, forward statistics.
 - add forwardpage and forwardstatistics.
 - perform access.log and error.log feature. error.log need do middle coding.
+
+## this branch step06bootstrap use the bootstrap to re-design page layout
+- add bootstrap3.3.4
+- add jquery 1.9.1
+- change each page to use bootstrip

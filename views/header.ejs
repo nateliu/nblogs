@@ -3,25 +3,55 @@
 	<head>
 		<meta charset="UTF-8" />
 		<title>Blog</title>
-		<link rel="stylesheet" href="/stylesheets/style.css">
+		<script type="text/javascript" src="/jquery-1.9.1/jquery.min.js" ></script>
+		<script type="text/javascript" src="/bootstrap-3.3.4-dist/js/bootstrap.min.js" ></script>
+		<link rel="stylesheet" href="/bootstrap-3.3.4-dist/css/bootstrap.css">
 	</head>
 	<body>
-		<header>
-			<h1><%= title %></h1>
-		</header>
-		<nav>
-			<span><a title="主页" href="/">home</a></span>
-			<span><a title="存档" href="/archive">archive</a></span>
-			<span><a title="标签" href="/tags">tags</a></span>
-			<span><a title="友情链接" href="/links">links</a></span>
-			<% if (user) { %>
-			<span><a title="上传" href="/upload">upload</a></span>
-			<span><a title="发表" href="/post">post</a></span>
-			<span><a title="登出" href="/logout">logout</a></span>
-			<% } else { %>
-			<span><a title="登录" href="/login">login</a></span>
-			<span><a title="注册" href="/reg">register</a></span>
-			<% } %>
-			<span><form action="/search" method="GET"><input type="text" name="keyword" placeholder="SEARCH" class="search" /></form></span>
-		</nav>
+		<nav class="nav navbar-default navbar-fixed-top" role="navigation">
+		   	<div class="container-fluid">
+		   		<div class="navbar-header">
+				<button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+		   	     <a href="/" class="navbar-brand">
+		   	     	<img src ="images/bloglogo.png" style="height: 50px;margin-top:-15px;"/>
+		   	     </a>
+		   		</div>
+		   		<div class="collapse navbar-collapse">
+			   		<ul class="nav navbar-nav">
+			   			<li class="active"><a title="首页" href="/">Home</a></li>
+			   			<% if (user) { %>
+			   			<li><a title="上传" href="/upload">Upload</a></li>
+			   			<li><a title="发表" href="/post">Post</a></li>
+			   			<% } %>
+			   			<li class="dropdown">
+						<a href="#" data-toggle="dropdown">
+							Others
+							<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a title="存档" href="/archive">Archive</a></li>
+							<li><a title="标签" href="/tags">Tags</a></li>
+							<li class="divider"></li>
+							<li><a title="友情链接" href="/links">Links</a></li>
+						</ul>
+					</li>
+			   		</ul>
+			   		<div class="navbar-form  navbar-right">
+			   			<% if (user) { %>
+			   			<div>Welcome <%= user.name %></div>
+			   			<a title="登出" href="/logout">Logout</a>
+			   			<% } else { %>
+			   			<a title="登录" href="/login" class="navber-link">Sign In</a>
+			   			<a title="注册" href="/reg" class="navber-link">Sign Up</a>
+			   			<% } %>
+			   			<form action="/search" method="GET"><input type="text" name="keyword" placeholder="SEARCH" class="form-control" /></form> 
+			   		</div>
+		   		</div>
+		   	</div>
+   		</nav>
+   		<div style="height: 100px;"></div>
 		<article>

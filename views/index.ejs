@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title><%= title %></title>
-		<link rel='stylesheet' href='/stylesheets/style.css' />
-	</head>
-	<body>
-		<%- include header %>
+<%- include header %>
+<div class="container">
 		<% posts.forEach(function (post, index) { %>
 		<p><h2><a href="u/<%= post.name %>/<%= post.time.day %>/<%= post.title %>"><%= post.title %></a></h2>
 		<a href="/u/<%= post.name %>"><img src="<%= post.head %>" class="r_head" /></a>
@@ -16,7 +10,7 @@
 			标签：
 			<% post.tags.forEach(function (tag, index) { %>
 			<% if (tag) { %>
-			<a class="tag" href="/tags/<%= tag %>"><%= tag %></a>
+			<a class="label label-default" href="/tags/<%= tag %>"><%= tag %></a>
 			<% } %>
 			<% }) %>
 			<% if (post.reprint_info.reprint_from) { %>
@@ -24,7 +18,7 @@
 			<% } %>
 		</p>
 		<p><%- post.post %></p>
-		<p class="info">
+		<p class="badge">
 		  阅读：<%= post.pv %> | 
 		  评论：<%= post.comments.length %> | 
 		  转载：
@@ -35,7 +29,6 @@
 		  <% } %>
   		</p>
 		<% }) %>
-		<%- include paging %>
-		<%- include footer %>
-	</body>
-</html>
+</div>
+<%- include paging %>
+<%- include footer %>

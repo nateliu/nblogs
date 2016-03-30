@@ -1,5 +1,7 @@
 <%- include header %>
+<div class="container">
 <% posts.forEach(function (tag, index) { %>
-  <a class="tag" href="/tags/<%= tag %>"><%= tag %></a>
+  <a class="label label-default" href="/tags/<%= tag %>"><%= tag %></a>
 <% }) %>
+</div>
 <%- include footer %>
