@@ -28,3 +28,7 @@ perform some enhancement for this blogs
 - add link page
 - add 404 page
 - add head(need do more investgate)
+
+## this branch step05forward perform the forward feature, forward statistics.
+- add forwardpage and forwardstatistics.
+- perform access.log and error.log feature. error.log need do middle coding.
